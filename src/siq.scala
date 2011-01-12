@@ -13,14 +13,15 @@ object siq {
   import dsl._
 
   def main(args : Array[String]) : Unit = {
-    val query = unit(7.0) + 7 == unit(9) + "Chris" // entering dsl mode early
+    val query = dsl.unit(7.0) + 7 == dsl.unit(9) + "Chris" // entering dsl mode early
 
     printExample( query )
     printInternals( query )
 
     printExample( 7 + 7 == (9:Rep[Double]) )
-    printExample( col2rep(people.name) == unit("Chris") )
-    printExample( 27 - col2rep(people.age) == 0 )
+    printExample( people.name == "Chris" )
+    printExample( people.age == 5 )
+    printExample( 27 - people.age == 0 )
   }
 
   var i = 0

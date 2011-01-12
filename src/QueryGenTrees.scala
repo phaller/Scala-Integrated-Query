@@ -17,6 +17,6 @@ trait QueryGenTree extends QueryGenBase with QueryGenTreeInterface with QueryExp
     case Plus  ( a,b ) => "Plus( " + toTree( a ) + " , " + toTree( b ) + " )"
     case Minus ( a,b ) => "Minus(" + toTree( a ) + " , " + toTree( b ) + " )"
     case Concat( a,b ) => "Concat( " + toTree( a ) + " , " + toTree( b ) + " )"
-    case ColumnDef( c ) => "ColumnDef( " + c.table + " , " + c.name + " )"
+    case c: Column[_]  => "Column( " + c.table + "." + c.name + " )"
   }
 }

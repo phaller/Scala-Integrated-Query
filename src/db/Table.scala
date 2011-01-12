@@ -6,23 +6,20 @@ import common._
 import internal._
 
 trait Table extends Base{
+  trait PeopleClass{
+    val name: Rep[String]
+    val age:  Rep[Double]
+  }
+  def people : PeopleClass
+}
+trait TableExp extends Table with BaseExp{
   case class Column[T](
     table: String,
     name : String
-  )
-  trait PeopleClass{
-    val name: Column[String]
-    val age:  Column[Double]
-  }
-  def people : PeopleClass
-  implicit def col2rep[T]( c: Column[T] ) : Rep[T]
-}
-trait TableExp extends Table with BaseExp{
-  case class ColumnDef[T]( c:Column[T] ) extends Def[T]
+  ) extends Def[T]
   class myPeopleClass extends PeopleClass{
-    val name = Column[String]( "person","name")
-    val age  = Column[Double]( "person","age")
+    val name: Rep[String] = Column[String]( "person","name")
+    val age:  Rep[Double]  = Column[Double]( "person","age")
   }
   def people = new myPeopleClass
-  implicit def col2rep[T]( c: Column[T] ) : Rep[T] = ColumnDef[T](c)
 }

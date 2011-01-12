@@ -24,6 +24,8 @@ trait QueryGenBase extends QueryExp
       case s: String => '"' + s.toString + '"'
       case d: Double => d.toString
       case i: Int    => i.toString
+      //case c: Column[_] => c.table + "." + c.name
+
       // ... cannot use AnyVal here...
     }
 	}

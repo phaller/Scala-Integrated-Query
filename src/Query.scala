@@ -5,8 +5,6 @@ package siq
 import common._
 import internal._
 
-import Predef.{any2stringadd => _, _} // prohibit automatic toString conversion of objects when + method is used
-
 trait QueryInterface extends
          QueryOperators
     with Arith[Double]
