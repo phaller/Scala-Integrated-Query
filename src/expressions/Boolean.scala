@@ -13,7 +13,7 @@ trait BooleanOperators extends Base {
 }
 
 trait BooleanExp extends BooleanOperators with BaseExp {
-  case class Equals(x: Exp[Any], y: Exp[Any]) extends Def[Boolean]
+  //case class Equals(x: Exp[Any], y: Exp[Any]) extends Def[Boolean]
   case class And(x: Exp[Boolean], y: Exp[Boolean]) extends Def[Boolean]
   case class Or(x: Exp[Boolean], y: Exp[Boolean]) extends Def[Boolean]
 
@@ -24,7 +24,7 @@ trait BooleanExp extends BooleanOperators with BaseExp {
 
 trait ScalaGenBoolean extends ScalaGenBase with BooleanExp {
   override def emitNode(sym: Sym[_], rhs: Def[_])(implicit stream: PrintWriter) = rhs match {
-    case Equals(a,b) =>  emitValDef(sym, "" + quote(a) + "+" + quote(b))
+    //case Equals(a,b) =>  emitValDef(sym, "" + quote(a) + "+" + quote(b))
     case And(a,b) => emitValDef(sym, "" + quote(a) + "-" + quote(b))
     case Or(a,b) => emitValDef(sym, "" + quote(a) + "*" + quote(b))
     case _ => super.emitNode(sym, rhs)
